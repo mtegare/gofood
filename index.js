@@ -253,7 +253,7 @@ const functionRedeem = (accessToken, uuid, uniqid) => new Promise((resolve, reje
         const otp = await readlineSync.question('Masukan Otp: ');
         const sendOtp = await functionInputOtp(otp, otpToken, uuid, uniqueid);
         if (!sendOtp.data.access_token) {
-            console.log(dor)
+            console.log(sendOtp)
         }
         const accessToken =	 await  sendOtp.data.access_token;
         const saveToken = await fs.appendFile('token.txt',`${accessToken}\n`, function (err) {
