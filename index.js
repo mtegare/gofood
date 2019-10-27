@@ -7,7 +7,7 @@ const uuidv4 = require('uuid/v4');
 var uuid = uuidv4();
 
 
-console.log('Regist Akun Gojek -> Set Pin -> Redeem GOFOODNASGOR07\n');
+console.log('Regist Akun Gojek -> Redeem GOFOODBOBA07\n');
 const phoneNumber = readlineSync.question('Masukan No Hp: ');
 
 const genUniqueId = length =>
@@ -205,7 +205,7 @@ const functionRedeem = (accessToken, uuid, uniqid) => new Promise((resolve, reje
 	const url = 'https://api.gojekapi.com/go-promotions/v1/promotions/enrollments';
 
 	const boday = {
-		"promo_code":"GOFOODNASGOR07"
+		"promo_code":"GOFOODBOBA07"
 };
 
 	fetch (url, {
@@ -260,11 +260,11 @@ const functionRedeem = (accessToken, uuid, uniqid) => new Promise((resolve, reje
             if (err) throw err;
             console.log('Gagal Menyimpan Acces Token!');
         });
-		const pin = await readlineSync.question('Masukan Pin: ');   
-		const setOtpPin = await functionSetPin(pin, '', accessToken, uuid, uniqueid);
-		const otpPin = await readlineSync.question('Masukan Otp: ');
-		const setPin = await functionSetPin(pin, otpPin, accessToken, uuid, uniqueid);
-        console.log(`[ ${moment().format('HH:mm:ss')} ] Set Pin Sukses`);
+// 		const pin = await readlineSync.question('Masukan Pin: ');   
+// 		const setOtpPin = await functionSetPin(pin, '', accessToken, uuid, uniqueid);
+// 		const otpPin = await readlineSync.question('Masukan Otp: ');
+// 		const setPin = await functionSetPin(pin, otpPin, accessToken, uuid, uniqueid);
+//         console.log(`[ ${moment().format('HH:mm:ss')} ] Set Pin Sukses`);
         const redeem = await functionRedeem(accessToken, uuid, uniqueid);
         if (!redeem.data.message) {
         	console.log(redeem)
