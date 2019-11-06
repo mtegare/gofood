@@ -4,12 +4,8 @@ const delay = require('delay');
 const cheerio = require('cheerio');
 const moment = require('moment');
 const fs = require('async-file');
-const Telegraf = require("telegraf");
 const uuidv4 = require('uuid/v4');
 var uuid = uuidv4();
-
-const token = "928468501:AAHCFGX_45YCvxv3060x4wtN986YO1cXCbE";
-const app = new Telegraf(token);
 
 console.log('Regist Akun Gojek -> Set Pin -> Redeem Voucher\n');
 const phoneNumber = readlineSync.question('Masukan No Hp: ');
@@ -145,8 +141,6 @@ const functionRedeem = (accessToken, uuid, uniqid) => new Promise((resolve, reje
 });
 
 (async () => { 
-	app.hears('redeemgofood', async (ctx) => {
-		app.telegram.sendMessage(484279002, 'OTW Create Acoount Gojek Sekalian Redeem GOFOODBOBA07.');
 		const uniqueid = genUniqueId(16);
 		const name = await functionGenName();
         const mail = await genUniqueId(7);
@@ -168,9 +162,4 @@ const functionRedeem = (accessToken, uuid, uniqid) => new Promise((resolve, reje
         	console.log(redeem)
         }
         const pesan = await redeem.data.message;
-
-		app.telegram.sendMessage(484279002, pesan);
-	});
-	job.start();
-  	app.launch()
 })();
